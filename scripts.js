@@ -227,7 +227,7 @@ function refresh(){
             if (index > -1) {
                 wordList.splice(index, 1);
             }
-            console.log(wordList.length +"/" + wordCount)
+            document.getElementById('left').textContent = "Left: " + wordList.length + "/" + wordCount;
             if (wordList.length == 0){
                 incrementCounter();
                 refresh();
