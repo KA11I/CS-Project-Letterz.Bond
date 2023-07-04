@@ -1,6 +1,8 @@
 html,
 body {
     overscroll-behavior-y: contain;
+    height: 95vh;
+    overflow: hidden;
 }
 
 
