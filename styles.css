@@ -1,0 +1,71 @@
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f7fafc;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .letter {
+    font-size: 48px;
+    font-weight: bold;
+    position: absolute;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .letter.used {
+    color: red;
+    pointer-events: none;
+  }
+
+
+  #touch_circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    cursor: move;
+    display: none;
+    z-index: 1;
+    visibility: hidden;
+}
+  
+
+.trail {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid pink;
+  background: pink;
+  position: fixed;
+  animation: come 0.5s linear forwards;
+
+}
+
+@keyframes come{
+  0%{transform: scale(0);
+  }
+  1%{transform: scale(1) translateY(0px);
+  opacity: 0.5;}
+
+  100%{
+    transform: scale(0) translateY(50px);
+    opacity: 0;
+
+
+  }
+
+}
