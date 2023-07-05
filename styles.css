@@ -1,8 +1,19 @@
+
+
+
+@font-face {
+  font-family: pixelated;
+  src: url(8bitOperatorPlus-Bold.ttf);
+}
+
+
 html,
 body {
     overscroll-behavior-y: contain;
     height: 95vh;
     overflow: hidden;
+    background-color: #EC8993;
+    font-family: pixelated;
 }
 
 
@@ -13,12 +24,14 @@ body {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-color: #f7fafc;
+    background-color: #f1adb4;
+    box-shadow: 0px 0px 100px #f1adb4;
+    color: white;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
   
   .letter {
     font-size: 48px;
@@ -34,7 +47,7 @@ body {
   }
   
   .letter.used {
-    color: red;
+    color: #808080;
     pointer-events: none;
   }
 
@@ -77,3 +90,7 @@ body {
   }
 
 }
+
+
+
+
