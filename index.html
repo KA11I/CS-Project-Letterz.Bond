@@ -4,22 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            clifford: '#da373d',
-          }
-        }
-      }
-    }
-  </script>
+  <script src="scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </head>
 <body>
-  <div id="touch_circle"></div>
 
+  
+  <div class="pyro">
+    <div class="before"></div>
+    <div class="after"></div>
+  </div>
+  <div id="touch_circle"></div>
     <div class="circle" id="letterCircle"></div>
     <div class="w-1/2 mx-auto mt-4 flex flex-row justify-center"> <!-- Added 'mt-4' class for top margin -->
       <input type="text" class="border border-gray-300 px-4 py-2 rounded-md " id="textField" disabled>
@@ -27,6 +22,6 @@
     <p id="counter">Counter: <span id="count">0</span></p>
     <p id="left">Left: <span id="count">0</span></p>
 
-  <script src="scripts.js"></script>
+    <button onclick="refresh()">Refresh</button>
 </body>
 </html>
