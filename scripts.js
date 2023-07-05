@@ -1,4 +1,128 @@
+let inputField;
+
+
+function shuffleArray(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function generateLetterCircle(mainWord) {
+    const circleContainer = document.getElementById("letterCircle");
+    circleContainer.innerHTML = "";
+
+    const mainLetters = shuffleArray(mainWord.split(""));
+
+    for (let i = 0; i < mainLetters.length; i++) {
+        const letter = mainLetters[i];
+
+        const angle = (360 / mainLetters.length) * i;
+
+        const letterElement = document.createElement("span");
+        letterElement.className = "letter";
+        letterElement.style.transform = `rotate(${angle}deg) translate(100px) rotate(-${angle}deg)`;
+        letterElement.textContent = letter;
+        circleContainer.appendChild(letterElement);
+    }
+}
+
+function getRandomWord(words) {
+    return words[Math.floor(Math.random() * words.length)];
+}
+
+function filterWords(words, targetWord) {
+    const filteredWords = [];
+    const targetLetters = targetWord.split('');
+
+    for (let i = 0; i < words.length; i++) {
+        const word = words[i].trim();
+        if (word.length <= targetWord.length && isWordValid(word, targetLetters)) {
+            filteredWords.push(word);
+        }
+    }
+
+    return filteredWords;
+}
+
+function isWordValid(word, targetLetters) {
+    const letters = word.split('');
+    const letterCount = {};
+
+    for (let i = 0; i < letters.length; i++) {
+        const letter = letters[i];
+
+        // Check if the letter is already present in the word
+        if (letterCount[letter]) {
+            return false;
+        }
+
+        // Check if the letter is not included in the target letters
+        if (!targetLetters.includes(letter)) {
+            return false;
+        }
+
+        letterCount[letter] = true;
+    }
+
+    return true;
+}
+
+function generateWordList(text) {
+    const words = text.split('\n').filter(Boolean);
+    const wordList = [];
+    let targetWord, filteredWords;
+
+    do {
+        targetWord = getRandomWord(words).trim(); // Trim the target word to remove the carriage return character
+        filteredWords = filterWords(words, targetWord);
+    } while (filteredWords.length < 3);
+
+    wordList.push(targetWord);
+    for (let i = 0; i < filteredWords.length; i++) {
+        const word = filteredWords[i].trim();
+        if (!wordList.includes(word)) {
+            wordList.push(word);
+        }
+    }
+
+    return wordList;
+}
+
+
+
+let wordList;
+let wordCount;
+function refresh(){
+const filename = 'allwords.txt'; // Name der Textdatei
+fetch(filename)
+    .then(response => response.text())
+    .then(text => {
+        wordList = generateWordList(text);
+        wordCount = wordList.length;
+        console.log(wordList);
+        generateLetterCircle(wordList[0]);
+        inputField.value = "";
+
+    })
+    .catch(error => {
+        console.error('Fehler beim Laden der Datei:', error);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    
+    function playAudio(name) {
+        var audio = new Audio(name + ".mp3")
+        audio.play();
+    }
+
+
+
+
+
+
+
+
+    inputField = document.getElementById("textField");
+
     function updateCounter() {
         // Get the current count from local storage or set it to 0 if not present
         let count = parseInt(getLocalStorage('callCount')) || 0;
@@ -36,112 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display the count on the webpage
         document.getElementById('count').textContent = count;
     }
-    function shuffleArray(array) {
-        return array.sort(() => Math.random() - 0.5);
-    }
 
-    function generateLetterCircle(mainWord) {
-        const circleContainer = document.getElementById("letterCircle");
-        circleContainer.innerHTML = "";
-
-        const mainLetters = shuffleArray(mainWord.split(""));
-
-        for (let i = 0; i < mainLetters.length; i++) {
-            const letter = mainLetters[i];
-
-            const angle = (360 / mainLetters.length) * i;
-
-            const letterElement = document.createElement("span");
-            letterElement.className = "letter";
-            letterElement.style.transform = `rotate(${angle}deg) translate(100px) rotate(-${angle}deg)`;
-            letterElement.textContent = letter;
-            circleContainer.appendChild(letterElement);
-        }
-    }
-
-    function getRandomWord(words) {
-        return words[Math.floor(Math.random() * words.length)];
-    }
-
-    function filterWords(words, targetWord) {
-        const filteredWords = [];
-        const targetLetters = targetWord.split('');
-
-        for (let i = 0; i < words.length; i++) {
-            const word = words[i].trim();
-            if (word.length <= targetWord.length && isWordValid(word, targetLetters)) {
-                filteredWords.push(word);
-            }
-        }
-
-        return filteredWords;
-    }
-
-    function isWordValid(word, targetLetters) {
-        const letters = word.split('');
-        const letterCount = {};
-
-        for (let i = 0; i < letters.length; i++) {
-            const letter = letters[i];
-
-            // Check if the letter is already present in the word
-            if (letterCount[letter]) {
-                return false;
-            }
-
-            // Check if the letter is not included in the target letters
-            if (!targetLetters.includes(letter)) {
-                return false;
-            }
-
-            letterCount[letter] = true;
-        }
-
-        return true;
-    }
-
-    function generateWordList(text) {
-        const words = text.split('\n').filter(Boolean);
-        const wordList = [];
-        let targetWord, filteredWords;
-
-        do {
-            targetWord = getRandomWord(words).trim(); // Trim the target word to remove the carriage return character
-            filteredWords = filterWords(words, targetWord);
-        } while (filteredWords.length < 3);
-
-        wordList.push(targetWord);
-        for (let i = 0; i < filteredWords.length; i++) {
-            const word = filteredWords[i].trim();
-            if (!wordList.includes(word)) {
-                wordList.push(word);
-            }
-        }
-
-        return wordList;
-    }
-
-
-    const inputField = document.getElementById("textField");
-
-    let wordList;
-    let wordCount;
-function refresh(){
-    const filename = 'allwords.txt'; // Name der Textdatei
-    fetch(filename)
-        .then(response => response.text())
-        .then(text => {
-            wordList = generateWordList(text);
-            wordCount = wordList.length;
-            console.log(wordList);
-            generateLetterCircle(wordList[0]);
-            inputField.value = "";
-
-        })
-        .catch(error => {
-            console.error('Fehler beim Laden der Datei:', error);
-        });
-    }
     refresh();
     var circle = document.getElementById('touch_circle');
     var isDragging = false;
@@ -223,6 +242,7 @@ function refresh(){
     
         if (wordList.includes(inputField.value)) {
             console.log("yes");
+
             var index = wordList.indexOf(inputField.value);
             if (index > -1) {
                 wordList.splice(index, 1);
@@ -231,9 +251,15 @@ function refresh(){
             if (wordList.length == 0){
                 incrementCounter();
                 refresh();
-            }
+                playAudio("complete");
+                const jsConfetti = new JSConfetti();
+                jsConfetti.addConfetti()
+            } else {playAudio("correct");}
         } else {
             console.log("no");
+
+            if (inputField.value != ""){
+            playAudio("incorrect");}
         }
         inputField.value = "";
     }
@@ -244,11 +270,8 @@ function refresh(){
         for (var i = 0; i < letters.length; i++) {
             var letter = letters[i];
             if (isColliding(circle, letter) && !letter.classList.contains('used')) {
-                letter.style.color = 'red';
                 letter.classList.add('used');
                 inputField.value += letter.textContent;
-            } else {
-                letter.style.color = '';
             }
         }
     }
@@ -264,3 +287,5 @@ function refresh(){
         );
     }
 });
+
+
