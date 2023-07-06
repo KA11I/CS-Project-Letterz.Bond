@@ -1,6 +1,5 @@
 
 
-
 @font-face {
   font-family: pixelated;
   src: url(8bitOperatorPlus-Bold.ttf);
@@ -14,7 +13,14 @@ body {
     overflow: hidden;
     background-color: #EC8993;
     font-family: pixelated;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
 
 
 .circle {
@@ -92,5 +98,27 @@ body {
 }
 
 
+.stats {
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 10%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+}
 
 
+.inputfield {
+  position: fixed;
+  bottom: 1;
+  padding-top: 10%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 50px;
+}
