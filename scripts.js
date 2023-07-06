@@ -200,15 +200,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if(wordList.includes(inputField.textContent)) {
 			console.log("yes");
-            function shakeAndReset() {
                 var element = document.getElementById('left');
                 element.classList.add('shake', 'green');
                 setTimeout(function() {
                   element.classList.remove('shake');
                   element.classList.remove('green');
                 }, 1000);
-              }
-              shakeAndReset();
+              
 			var index = wordList.indexOf(inputField.textContent);
 			if(index > -1) {
 				wordList.splice(index, 1);
@@ -250,3 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
 	}
 });
+
+
+
+
