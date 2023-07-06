@@ -37,6 +37,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
 }
   
   .letter {
@@ -124,26 +125,17 @@ body {
 }
 
 
-.btn {
-  background: #db963c;
-  border-bottom: 6px inset #c58736;
-  border-left: 6px inset #df993f;
-  border-right: 6px inset #d4a86e;
-  border-top: 6px inset #c58736;
-  box-sizing: border-box;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 2.2rem;
-  margin: 1rem;
-  min-width: 200px;
-  padding: .5rem;
-  text-transform: uppercase;
-  width: auto;
-  font-family:pixelated;
+@keyframes shake {
+  0% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
 }
 
-.btn.primary {
-  background: #db963c;
+.shake {
+  animation: shake 0.5s;
 }
 
+.green {
+  color: #a0df7b;
+}
