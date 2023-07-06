@@ -1,3 +1,13 @@
+function foundCount(){
+
+    var count = parseInt(wordCount);
+var length = parseInt(wordList.length);
+var result = isNaN(count) || isNaN(length) ? "Invalid input" : count - length;
+
+document.getElementById('left').textContent = "Found: " + result + "/" + count;
+
+}
+
 let inputField;
 
 function shuffleArray(array) {
@@ -85,7 +95,8 @@ function refresh() {
 		wordCount = wordList.length;
 		console.log(wordList);
 		generateLetterCircle(wordList[0]);
-		inputField.value = "";
+		inputField.textContent = "";
+        foundCount();
 	}).catch(error => {
 		console.error('Fehler beim Laden der Datei:', error);
 	});
@@ -99,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function updateCounter() {
 		let count = parseInt(getLocalStorage('callCount')) || 0;
-		document.getElementById('count').textContent = count;
-	}
+		document.getElementById('count').textContent = "Level: " + count;	
+    }
 
 	function setLocalStorage(key, value) {
 		localStorage.setItem(key, value);
@@ -115,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		let count = parseInt(getLocalStorage('callCount')) || 0;
 		count++;
 		setLocalStorage('callCount', count);
-		document.getElementById('count').textContent = count;
+		document.getElementById('count').textContent = "Level: " + count;
 	}
 	refresh();
 	var circle = document.getElementById('touch_circle');
@@ -185,14 +196,14 @@ document.addEventListener('DOMContentLoaded', function() {
 			letter.style.color = '';
 			letter.classList.remove('used');
 		}
-		if(wordList.includes(inputField.value)) {
+		if(wordList.includes(inputField.textContent)) {
 			console.log("yes");
-			var index = wordList.indexOf(inputField.value);
+			var index = wordList.indexOf(inputField.textContent);
 			if(index > -1) {
 				wordList.splice(index, 1);
 			}
-			document.getElementById('left').textContent = "Left: " + wordList.length + "/" + wordCount;
-			if(wordList.length == 0) {
+            foundCount();
+            if(wordList.length == 0) {
 				incrementCounter();
 				refresh();
 				playAudio("complete");
@@ -203,11 +214,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		} else {
 			console.log("no");
-			if(inputField.value != "") {
+			if(inputField.textContent != "") {
 				playAudio("incorrect");
 			}
 		}
-		inputField.value = "";
+		inputField.textContent = "";
 	}
 
 	function checkLetterCollision() {
@@ -216,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			var letter = letters[i];
 			if(isColliding(circle, letter) && !letter.classList.contains('used')) {
 				letter.classList.add('used');
-				inputField.value += letter.textContent;
+				inputField.textContent += letter.textContent;
 			}
 		}
 	}
