@@ -102,6 +102,7 @@ function refresh() {
 	});
 }
 document.addEventListener('DOMContentLoaded', function() {
+    
 	function playAudio(name) {
 		var audio = new Audio(name + ".mp3")
 		audio.play();
@@ -127,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		count++;
 		setLocalStorage('callCount', count);
 		document.getElementById('count').textContent = "Level: " + count;
+        
 	}
 	refresh();
 	var circle = document.getElementById('touch_circle');
@@ -198,12 +200,22 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if(wordList.includes(inputField.textContent)) {
 			console.log("yes");
+            function shakeAndReset() {
+                var element = document.getElementById('left');
+                element.classList.add('shake', 'green');
+                setTimeout(function() {
+                  element.classList.remove('shake');
+                  element.classList.remove('green');
+                }, 1000);
+              }
+              shakeAndReset();
 			var index = wordList.indexOf(inputField.textContent);
 			if(index > -1) {
 				wordList.splice(index, 1);
 			}
             foundCount();
             if(wordList.length == 0) {
+                
 				incrementCounter();
 				refresh();
 				playAudio("complete");
@@ -238,3 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
 	}
 });
+
+
+
+
