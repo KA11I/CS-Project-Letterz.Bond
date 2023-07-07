@@ -1,7 +1,7 @@
 # CS-Project-Letterz.Bond
 
 
-## Beschreibung
+## Beschreibung:
 Man muss alle (englischen) Wörter mit den gegebenen Buchstaben bilden. Wie viele Level man schon bestanden hat wird in einem Cookie gespeichert und immer angezeigt, auch wenn man die Website neuläd.
 
 ## Paar infos:
