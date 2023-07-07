@@ -16,3 +16,15 @@ Sounds: Geklaut von https://www.duolingo.com/
 Konfetti Animation: https://www.npmjs.com/package/js-confetti
 
 https://letterz.bond/
+
+## Anforderungen:
+
+Vererbung ❌
+Überscheiben von Methoden ❌
+Bedingte Wiederholung ✅
+Bedingte Anweisung ✅
+Zählwiederholung ✅
+Mehrfachauswahl ❌
+Konstruktoren ✅
+Datentypen ✅
+Variablen ✅
