@@ -1,13 +1,9 @@
-function foundCount(){
-
-    var count = parseInt(wordCount);
-var length = parseInt(wordList.length);
-var result = isNaN(count) || isNaN(length) ? "Invalid input" : count - length;
-
-document.getElementById('left').textContent = "Found: " + result + "/" + count;
-
+function foundCount() {
+	var count = parseInt(wordCount);
+	var length = parseInt(wordList.length);
+	var result = isNaN(count) || isNaN(length) ? "Invalid input" : count - length;
+	document.getElementById('left').textContent = "Found: " + result + "/" + count;
 }
-
 let inputField;
 
 function shuffleArray(array) {
@@ -96,13 +92,12 @@ function refresh() {
 		console.log(wordList);
 		generateLetterCircle(wordList[0]);
 		inputField.textContent = "";
-        foundCount();
+		foundCount();
 	}).catch(error => {
 		console.error('Fehler beim Laden der Datei:', error);
 	});
 }
 document.addEventListener('DOMContentLoaded', function() {
-    
 	function playAudio(name) {
 		var audio = new Audio(name + ".mp3")
 		audio.play();
@@ -111,8 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function updateCounter() {
 		let count = parseInt(getLocalStorage('callCount')) || 0;
-		document.getElementById('count').textContent = "Level: " + count;	
-    }
+		document.getElementById('count').textContent = "Level: " + count;
+	}
 
 	function setLocalStorage(key, value) {
 		localStorage.setItem(key, value);
@@ -128,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		count++;
 		setLocalStorage('callCount', count);
 		document.getElementById('count').textContent = "Level: " + count;
-        
 	}
 	refresh();
 	var circle = document.getElementById('touch_circle');
@@ -200,20 +194,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		if(wordList.includes(inputField.textContent)) {
 			console.log("yes");
-                var element = document.getElementById('left');
-                element.classList.add('shake', 'green');
-                setTimeout(function() {
-                  element.classList.remove('shake');
-                  element.classList.remove('green');
-                }, 1000);
-              
+			var element = document.getElementById('left');
+			element.classList.add('shake', 'green');
+			setTimeout(function() {
+				element.classList.remove('shake');
+				element.classList.remove('green');
+			}, 1000);
 			var index = wordList.indexOf(inputField.textContent);
 			if(index > -1) {
 				wordList.splice(index, 1);
 			}
-            foundCount();
-            if(wordList.length == 0) {
-                
+			foundCount();
+			if(wordList.length == 0) {
 				incrementCounter();
 				refresh();
 				playAudio("complete");
@@ -248,7 +240,3 @@ document.addEventListener('DOMContentLoaded', function() {
 		return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
 	}
 });
-
-
-
-
