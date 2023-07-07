@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function updateCounter() {
 		let count = parseInt(getLocalStorage('callCount')) || 0;
-		document.getElementById('count').textContent = "Level: " + count;
+		document.getElementById('count').textContent = "Levels Complete: " + count;
 	}
 
 	function setLocalStorage(key, value) {
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		let count = parseInt(getLocalStorage('callCount')) || 0;
 		count++;
 		setLocalStorage('callCount', count);
-		document.getElementById('count').textContent = "Level: " + count;
+		document.getElementById('count').textContent = "Levels Complete: " + count;
 	}
 	refresh();
 	var circle = document.getElementById('touch_circle');
