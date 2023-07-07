@@ -89,7 +89,6 @@ function refresh() {
 	fetch(filename).then(response => response.text()).then(text => {
 		wordList = generateWordList(text);
 		wordCount = wordList.length;
-		console.log(wordList);
 		generateLetterCircle(wordList[0]);
 		inputField.textContent = "";
 		foundCount();
@@ -193,7 +192,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			letter.classList.remove('used');
 		}
 		if(wordList.includes(inputField.textContent)) {
-			console.log("yes");
 			var element = document.getElementById('left');
 			element.classList.add('shake', 'green');
 			setTimeout(function() {
@@ -215,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				playAudio("correct");
 			}
 		} else {
-			console.log("no");
 			if(inputField.textContent != "") {
 				playAudio("incorrect");
 			}
