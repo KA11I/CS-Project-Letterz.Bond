@@ -1,3 +1,5 @@
+// hallo herr emig :)
+
 function foundCount() {
 	var count = parseInt(wordCount);
 	var length = parseInt(wordList.length);
