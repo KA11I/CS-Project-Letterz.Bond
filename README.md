@@ -7,6 +7,7 @@ Man muss alle (englischen) Wörter mit den gegebenen Buchstaben bilden. Wie viel
 ## Paar infos:
 Hosting: https://www.netlify.com/ (kostenlos)  
 Domain: https://www.namecheap.com/ ($1.78/yr)  
+DNS Zeugs anti DDOS und Statistiken: https://www.cloudflare.com/ (kostenlos)  
 Font: https://www.1001freefonts.com/8-bit-operator.font  
 Sounds: Geklaut von https://www.duolingo.com/  
 Konfetti Animation: https://www.npmjs.com/package/js-confetti    
